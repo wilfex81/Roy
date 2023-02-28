@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Driving School</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100vh;
+      background-color: #fff;
+      padding: 20px 0;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar-brand {
+      display: block;
+      padding: 10px;
+      text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar-brand:hover {
+  color: #007bff;
+}
+
+.sidebar-nav {
+  margin-top: 20px;
+}
+
+.sidebar-nav-link {
+  display: block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar-nav-link:hover {
+  color: #007bff;
+}
+
+.sidebar-nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.content {
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.progress {
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+  .content {
+    margin-left: 0;
+  }
+}
+</style>
+</head>
+<body>
+    <!-- Navigation bar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'events' %}">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'camps' %}">Camps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacts' %}">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {% if messages %}
+      
+    {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
+          </button>
+      </div>
+    {% endfor %}
+      
+  {% endif %}
+  <div class="sidebar">
+    <a href="{% url 'home' %}" class="sidebar-brand navbar-brand">Driving School</a>
+    <nav class="sidebar-nav">
+        <a href="{% url 'myclass' %}" class="sidebar-nav-link active"><i class="fas fa-car"></i> My Classes</a>
+      <a href="{% url 'myprogress' %}"class="sidebar-nav-link"><i class="fas fa-chart-line"></i> Progress</a>
+    </nav>
+  </div>
+  <div class="content">
+    <h1 class="page-title"><i class="fas fa-car"></i> My Classes</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Beginner Tutorials</div>
+          <div class="card-body">
+            <p>Learn the basics of driving with these beginner tutorials:</p>
+            <ul>
+              <li>How to start the car</li>
+              <li>How to shift gears</li>
+              <li>How to use the pedals</li>
+              <li>How to turn</li>
+              <li>How to park</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Advanced Tutorials</div>
+          <div class="card-body">
+            <p>Take your driving skills to the next level with these advanced tutorials:</p>
+            <ul>
+              <li>Highway driving</li>
+              <li>Parallel parking</li>
+              <li>Driving in bad weather</li>
+              <li>Dealing with road rage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+  <footer>
+    <div class="container-fluid bg-light text-center py-3">
+      <p>&copy; 2023 Rally. All Rights Reserved.</p>
+    </div>
+  </footer>
+  </html>
+  
+  
+  
+  
+  

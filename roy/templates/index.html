@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rally|Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: antiquewhite;
+    }
+
+    .navbar {
+      background-color: antiquewhite;
+    }
+
+    .jumbotron {
+      background-image: url("static/images/car-1.jpg");
+      background-color: antiquewhite;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: antiquewhite;
+      padding: 0 1rem;
+    }
+
+    .jumbotron-text {
+      max-width: 50%;
+    }
+
+    .carousel-item {
+      height: 500px;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: antiquewhite;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .carousel-caption h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .carousel-caption p {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+
+    .carousel-indicators li {
+      background-color: #333;
+      border: none;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      margin: 0 10px;
+      transition: background-color 0.5s ease;
+    }
+
+    .carousel-indicators .active {
+      background-color:antiquewhite;
+      width: 20px;
+      height: 20px;
+    }
+
+    .slide-text {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation bar -->
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">Rally</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'events' %}">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'camps' %}">Camps</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contacts' %}">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  {% if messages %}
+      
+  {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
+        </button>
+    </div>
+  {% endfor %}
+    
+{% endif %}
+
+<!-- HomePage -->
+<!-- Jumbotron -->
+<div class="jumbotron">
+  <div class="jumbotron-text">
+    <h1 class="display-4">Join Our Community of Car Enthusiasts</h1>
+    <p class="lead">Experience the excitement of rally racing and connect with other enthusiasts.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a>
+  </div>
+</div>
+
+  <!-- Slides -->
+   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="background-image: url('static/images/car-2.jpg')">
+        <div class="carousel-caption">
+          <h1>DID YOU KNOW?</h1>
+          <p>The popularity of road rallies dates back more than a century. Since 1895, 
+            when the first documented road rally was held in France, 
+            it has become a well-liked form of racing and leisure.</p>
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image: url('static/images/car-3.jpg')">
+        <div class="carousel-caption">
+          <h1>DID YOU KNOW?</h1>
+          <p>The Paris-Dakar Rally, which travels thousands of kilometers through some of the world's 
+            most difficult terrain, is the most famous road rally in existence.</p>
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image: url('static/images/car-4.jpg')">
+        <div class="carousel-caption">
+          <h1>DID YOU KNOW?</h1>
+          <p>Depending on the area and the event, road rallies may be staged on public or private property.
+            Road rallies might involve competition or not.
+             While some rallies are competitive timed events with competitors, others are straightforward tours or scavenger hunts.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <footer>
+    
+  </footer>
+  <!-- Content
+  <div class="container my-5">
+    <h2 class="text-center mb-5">Upcoming Events</h2>
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://picsum.photos/600/400/?random=5" alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title">Event Title</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in dolor in velit tr</p> -->
+            <script>
+              var navbar = document.querySelector('.navbar');
+        
+        window.onscroll = function() {
+          if (window.scrollY > 50) {
+            navbar.classList.add('navbar-scrolled');
+          } else {
+            navbar.classList.remove('navbar-scrolled');
+          }
+        };
+        
+            </script>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  
+
+</body>
+<footer>
+  <div class="container-fluid bg-light text-center py-3">
+    <p>&copy; 2023 Rally. All Rights Reserved.</p>
+  </div>
+</footer>
+</html>
