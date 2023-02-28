@@ -99,18 +99,32 @@
             </ul>
         </div>
       </nav>
+      {% if messages %}
+      
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
+            </button>
+        </div>
+      {% endfor %}
+        
+    {% endif %}
       <div class="container">
         <h1 class="text-center my-5">Login</h1>
-        <form>
-          <div class="form-group">
-            {{login_form.username|as_crispy_field}}
-          </div>
-          <div class="form-group">
-            {{login_form.password|as_crispy_field}}
-          </div>
-          <a href="{% url 'dashboard' %}" class="btn btn-primary">Login</a>
-          <button type="submit"  class="btn btn-outline-primary"><a href="http://127.0.0.1:8000/admin/">Admin Login</a></button>
-        </form>
+        <form method="POST" action="">
+          {% csrf_token %}
+              <div class="mb-3">
+                <input type="text" class="form-control" name="username", placeholder="username" required>
+              </div>
+              <br>
+              <div class="mb-3">
+                <input type="password" class="form-control" name="password", placeholder="password" required>
+              </div>
+              <br>
+              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit"  class="btn btn-outline-primary"><a href="http://127.0.0.1:8000/admin/">Admin Login</a></button>
+      </form>
       </div>
   
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

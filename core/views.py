@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import NewUserForm
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate 
-from django.contrib.auth.forms import AuthenticationForm 
-from django.contrib.auth.views import LoginView
+from .forms import SignUpForm
 
 '''HomePage'''
 def home(request):
@@ -37,34 +33,37 @@ def clases(request):
 
 '''signup'''
 def signup(request):
-    if request.method == "POST":
-        form = NewUserForm(request.POST)
+    if request.method == 'POST':
+        form  = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
+            #Authenticate and Login
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username = username, password = password)
             login(request, user)
-            messages.success(request, "Registration successful." )
-            return redirect("core:dashboard")
-        messages.error(request, "Unsuccessful registration. Invalid information.")
-    form= NewUserForm()
+            messages.success(request, "You have successfully regstered! Welcome")
+            return redirect('login')
+    else:
+        form = SignUpForm()
+        return render(request, 'signup.html', context={"form":form})
     return render(request, 'signup.html', context={"form":form})
 
 '''login'''
 def user_login(request):
     if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.info(request, f"You are now logged in as {username}.")
-                return render(request, "dashboard.html")
-            else:
-                messages.error(request,"Invalid username or password.")
+        username = request.POST['username']
+        password = request.POST['password']
+        #Authenticate
+        user = authenticate(request, username = username, password = password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You have logged in succesfully")
+            return redirect('dashboard')
         else:
-            messages.error(request,"Invalid username or password.")
-    form = AuthenticationForm()
-    return render(request, 'login.html', context={"login_form":form})
+            messages.success(request, "There was an error loggin in, please try again...")
+            return redirect('home')       
+    else:
+        return render(request, 'login.html', context={})
 
 
