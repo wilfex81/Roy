@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import Event
 
 '''HomePage'''
 def home(request):
@@ -9,7 +11,9 @@ def home(request):
 
 '''Events'''
 def events(request):
-    return render(request, 'events.html')
+    events = Event.objects.all()
+    print(events)
+    return render(request, 'events.html', {'events': events})
 
 '''camps'''
 def camps(request):
@@ -32,6 +36,7 @@ def clases(request):
     return render(request, 'classes.html')
 
 '''signup'''
+@csrf_exempt 
 def signup(request):
     if request.method == 'POST':
         form  = SignUpForm(request.POST)
@@ -65,5 +70,8 @@ def user_login(request):
             return redirect('home')       
     else:
         return render(request, 'login.html', context={})
-
-
+    
+def user_logout(request):
+    logout(request)
+    messages.success(request, 'You have been logged out...')
+    return redirect('home')
