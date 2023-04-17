@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Course</title>
+    <style>
+      body {
+        background-image: url("https://i.pinimg.com/originals/06/58/b7/0658b7b8db93438947e0d13f9856dc22.jpg");
+        background-size: cover;
+        padding: 20px;
+      }
+      
+      #progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 20px;
+      }
+      
+      #progress-bar-fill {
+        height: 100%;
+        background-color: rgb(35, 35, 79);
+        width: 0%;
+      }
+      
+      .lesson {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+        width: 45%;
+        background-color: rgba(255, 255, 255, 0.7);
+        float: left;
+        margin-right: 5%;
+        box-sizing: border-box;
+      }
+      
+      .lesson:last-child {
+        margin-right: 0;
+      }
+      
+      .lesson h2 {
+        margin-top: 0;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      
+      .lesson p {
+        margin-bottom: 20px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+      
+      .complete-btn {
+        background-color: blue;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-top: 10px;
+      }
+      
+      .complete-btn:disabled {
+        background-color: #ddd;
+        color: #666;
+        cursor: not-allowed;
+      }
+      
+      .footer {
+        clear: both;
+        margin-top: 20px;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+      }
+      
+      h1 {
+        font-size: 32px;
+        text-align: center;
+        color: white;
+      }
+      
+      #lessons {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page">
+      <div id="progress-bar">
+        <div id="progress-bar-fill"></div>
+      </div>
+      <div id="lessons">
+        <!-- Lesson 1 -->
+        <div class="lesson">
+          <a href="#lesson1" style="text-decoration:none;"><h2>Lesson 1</h2></a>
+          <p>Click above to access the lesson content.</p>
+          <button class="complete-btn">Complete</button>
+        </div>
+        <!-- Lesson 2 -->
+        <div class="lesson">
+          <a href="#lesson2" style="text-decoration:none;"><h2>Lesson 2</h2></a>
+          <p>Click above to access the lesson content.</p>
+          <button class="complete-btn">Complete</button>
+        </div>
+        <!-- Lesson 3 -->
+        <div class="lesson">
+          <a href="#lesson3" style="text-decoration:none;"><h2>Lesson 3</h2></a>
+          <p>Click above to access the lesson content.</p>
+          <button class="complete-btn">Complete</button>
+        </div>
+        <!-- Lesson 4 -->
+        <div class="lesson">
+        <a href="#lesson4" style="text-decoration:none;"><h2>Lesson 4</h2></a>
+        <p>Click above to access the lesson content.</p>
+        <button class="complete-btn">Complete</button>
+        </div>
+        <!-- Lesson 5 -->
+        <div class="lesson">
+            <a href="#lesson5" style="text-decoration:none;"><h2>Lesson 5</h2></a>
+            <p>Click above to access the lesson content.</p>
+            <button class="complete-btn">Complete</button>
+          </div>
+        </div>
+        </div>
+        <script>
+            // Get the progress bar and fill element
+            var progressBar = document.getElementById("progress-bar");
+            var progressBarFill = document.getElementById("progress-bar-fill");
+          
+            // Get all the complete buttons
+            var completeButtons = document.getElementsByClassName("complete-btn");
+          
+            // Count the number of completed lessons
+            var completedLessons = 0;
+          
+            // Add a click event listener to each complete button
+            for (var i = 0; i < completeButtons.length; i++) {
+              completeButtons[i].addEventListener("click", function() {
+                // Update the completed lessons count
+                completedLessons++;
+          
+                // Calculate the progress percentage
+                var progress = completedLessons / completeButtons.length * 100;
+          
+                // Update the progress bar fill width
+                progressBarFill.style.width = progress + "%";
+          
+                // Disable the clicked button
+                this.disabled = true;
+              });
+            }
+          </script>
+          
+        <div class="footer">
+        <p>© 2023 My Course. All rights reserved.</p>
+        </div>
+        
+          </body>
+        </html>

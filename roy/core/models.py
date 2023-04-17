@@ -17,3 +17,13 @@ class Camp(models.Model):
 
     def _str_(self):
         return self.camp_name
+
+class ContactsSaved(models.Model):
+    subject = models.CharField(max_length= 200)
+    first_name = models.CharField(max_length= 50)
+    last_name = models.CharField(max_length= 50)
+    email = models.EmailField()
+    message = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.subject

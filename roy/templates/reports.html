@@ -1,0 +1,164 @@
+<!DOCTY
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rally | Reports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+   * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80');
+      background-size: cover;
+    }
+
+    .navbar {
+      background-image: url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80');
+      background-size: cover;
+    }
+
+    /* .jumbotron {
+      background-image: url("/static/images/car-5.jpg");
+      background-color: antiquewhite;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: antiquewhite;
+      padding: 0 1rem;
+    }
+
+    .jumbotron-text {
+      max-width: 50%;
+    } */
+
+    .carousel-item {
+      height: 500px;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: antiquewhite;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .carousel-caption h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .carousel-caption p {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+
+    .carousel-indicators li {
+      background-color: #333;
+      border: none;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      margin: 0 10px;
+      transition: background-color 0.5s ease;
+    }
+
+    .carousel-indicators .active {
+      background-color:antiquewhite;
+      width: 20px;
+      height: 20px;
+    }
+
+    .slide-text {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation bar -->
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">Rally</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        {% if user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'reports' %}">Reports</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div class="container-fluid bg-light text-center py-3">
+  <div class="jumbotron">
+    <div class="jumbotron-text">
+<table class="layout">
+    <thead>
+      <th>User</th>
+      <th>Date</th>
+      <th>Log</th>
+      <th>Item Affected</th>
+      <th>Item ID</th>
+    </thead>
+    {% for log in logs %}
+      <tr>
+        <td>{{ log.user}} - {{ log.user_id }}</td>
+        <td>{{ log.action_time|date:"d/m/Y - g:ia" }}</td>
+        <td>{{ log }}</td>
+        <td>{{ log.object_repr }}</td>
+        <td>{{ log.object_id }}</td>
+        <td>{{ log.get_change_message }}</td>
+      </tr>
+    {% endfor %}
+  
+  </table>
+
+</div>
+</div>
+</div>
+          <script>
+            var navbar = document.querySelector('.navbar');
+      
+      window.onscroll = function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('navbar-scrolled');
+        } else {
+          navbar.classList.remove('navbar-scrolled');
+        }
+      };
+      
+          </script>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>  
+
+</body>
+<footer>
+<div class="container-fluid bg-light text-center py-3">
+  <p>&copy; 2023 Rally. All Rights Reserved.</p>
+</div>
+</footer>
+</html>

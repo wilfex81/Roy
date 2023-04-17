@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 2: Navigation and Checkpoints</title>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: 'Montserrat', sans-serif;
+			background-color: #F4F7FC;
+		}
+        body {
+  background-image: url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80');
+  background-size: cover;
+}
+
+
+	
+header {
+			background-color: #FFFFFF;
+		
+			padding: 20px;
+			display: flex;
+			align-items: center;
+			background-image: url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80');
+  background-size: cover;
+		}
+		header h1 {
+			font-size: 36px;
+			font-weight: bold;
+			margin: 0;
+			color: #2F2F2F;
+			flex-grow: 1;
+			text-align: center;
+		}
+		main {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 40px 20px;
+		}
+		h2 {
+			font-size: 28px;
+			font-weight: bold;
+			color: #2F2F2F;
+			margin-bottom: 20px;
+		}
+		p {
+			font-size: 18px;
+			line-height: 1.5;
+			color: #2F2F2F;
+			margin-bottom: 20px;
+		}
+		.video-container {
+			position: relative;
+			padding-bottom: 56.25%;
+			padding-top: 30px;
+			height: 0;
+			overflow: hidden;
+			margin-bottom: 20px;
+		}
+		.video-container iframe,
+		.video-container object,
+		.video-container embed {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.button-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 20px;
+		}
+		.button {
+			background-color: #004AAD;
+			color: #FFFFFF;
+			padding: 15px 30px;
+			font-size: 18px;
+			font-weight: bold;
+			text-decoration: none;
+			border-radius: 30px;
+			transition: all 0.3s ease;
+			margin-right: 10px;
+		}
+		.button:hover {
+			background-color: #002E6D;
+		}
+		.note-container {
+			background-color: #FFFFFF;
+			border-radius: 5px;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+			padding: 20px;
+			margin-bottom: 20px;
+		}
+		.note-container h3 {
+			font-size: 22px;
+			font-weight: bold;
+			color: #2F2F2F;
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+		.note-container p {
+			font-size: 18px;
+			line-height: 1.5;
+			color: #2F2F2F;
+			margin-bottom: 20px;
+		}
+		button {
+		background-color: #004AAD;
+		color: #FFFFFF;
+		padding: 10px 20px;
+		font-size: 16px;
+		font-weight: bold;
+		text-decoration: none;
+		border-radius: 5px;
+		border: none;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		}
+
+		button:hover {
+		background-color: #002E6D;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Road Rally Course</h1>
+	</header>
+	<main>
+        <h2>Lesson 2: Navigation and Checkpoints</h2>
+        <p>Welcome back to the Road Rally Course! In this lesson, we'll be learning about navigation and checkpoints, which are essential for success in road rallies</p>
+        <a href="https://youtu.be/n_NB2H658fA" target="_blank">
+			<div class="video-container">
+			  <iframe width="560" height="315" src="https://www.youtube.com/embed/n_NB2H658fA" title="Lesson 2: Navigation and Checkpoints" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+		  </a>
+		  
+		  
+		
+        <p>First, let's talk about reading maps and plotting a course:</p>
+        <ul>
+            <li>Learn how to read maps and understand the symbols and legends.</li>
+			<li>Practice plotting a course using a map and a route book.</li>
+			<li>Understand how to use GPS and other navigation tools effectively.</li>
+           
+        </ul>
+        <p>Now, let's cover the importance of checkpoints:</p>
+        <ul>
+            <li>Understand what checkpoints are and why they are important in road rallies.</li>
+			<li>Learn how to navigate to checkpoints efficiently and accurately.</li>
+			<li>Understand how to use timing and speed control to reach checkpoints on time.</li>
+            
+        </ul>
+        <div class="note-container">
+            <h3>Note:</h3>
+            <p>Driving is a serious responsibility, and it's important to take it seriously. If you have any doubts or concerns about your ability to drive safely, seek out additional training or resources to help you become a better driver.</p>
+        </div>
+		<div class="button-container">
+            <a href="{% url 'lesson_three' %}" class="button">Next Lesson</a>
+        </div>
+		<div class="button-container"></div>
+		<button onclick="window.history.back()">Back</button>
+		<button onclick="goToCourses()">My Courses</button>
+	</div>
+    </main>
+	<script>		
+		function goToCourses() {
+		  window.location.href = "http://127.0.0.1:8000/progress/";
+		}
+	  </script>
+</body>
+</html>     

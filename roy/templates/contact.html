@@ -1,12 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{% load crispy_forms_tags %} 
+<html>
+  <head>
+    <title>Contact Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-</head>
-<body>
-    <p>Contact page</p>
-</body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+  background-image: url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80');
+  background-size: cover;
+}
+
+      .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+  background-image: url('https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80');
+  background-size: cover;
+
+    }
+    
+
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      form {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: 50px auto;
+        max-width: 500px;
+        padding: 50px;
+      }
+
+      input {
+        border: none;
+        border-radius: 3px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+        display: block;
+        font-size: 16px;
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 100%;
+      }
+
+      input[type="submit"] {
+        background-color: #3498db;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s ease-in-out;
+      }
+      input{
+        background-color: blue;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #2980b9;
+      }
+
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .form-group {
+        margin-bottom: 30px;
+      }
+
+      .form-group:last-of-type {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand" href="#">Rally</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'events' %}">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'camps' %}">Camps</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contacts' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+          </ul>
+      </div>
+    </nav>
+    {% if messages %}
+      
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close">
+            </button>
+        </div>
+      {% endfor %}
+        
+    {% endif %}
+    <h1>Contact Us</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        {{form.first_name|as_crispy_field}}
+      </div>
+      <div class="form-group">
+        {{form.last_name|as_crispy_field}}
+      </div>
+      <div class="form-group">
+        {{form.email|as_crispy_field}}
+      </div>
+      <div class="form-group">
+        {{form.subject|as_crispy_field}}
+      </div>
+      <div class="form-group">
+        {{form.message|as_crispy_field}}
+      </div>
+      <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+      <input type="submit" value="Send">
+    </form>
+  </body>
+  <footer>
+    <div class="container-fluid bg-light text-center py-3">
+      <p>&copy; 2023 Rally. All Rights Reserved.</p>
+    </div>
+  </footer>
 </html>
